@@ -6,7 +6,7 @@ An ARP Spoofer-attacker for Windows -OS to block away devices from your network.
 >arp0_attackerx.py is Upgraded arp0_attacker.py.
 >utils.py are Modules for arp0_attackerx.py.
 >(Old) -> Older version files that are no longer required.
->I have added a build version with .exe using pyinstaller for direct usage in Windows.
+>Added binaries with .exe using pyinstaller for direct usage in Windows.
 >
 ```INSTALLATION```
 1) git clone arp0_attacker/download from website.
